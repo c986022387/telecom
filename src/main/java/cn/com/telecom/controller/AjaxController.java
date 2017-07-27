@@ -19,8 +19,9 @@ public class AjaxController {
 	
 	@RequestMapping(name = "getInformtionOfTerminal")
 	public List<InformationOfTerminal> getInformtionOfTerminal(){
-		return this.ajaxService.getAll();
+		List<InformationOfTerminal> list = this.ajaxService.getAll();
+		System.out.println(list);
+		return list;
 	}
-	
 	
 }

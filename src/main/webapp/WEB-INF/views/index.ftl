@@ -4,9 +4,24 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="renderer" content="webkit">
-    <title>接入部门辅助系统</title>
+    
+    <link rel="stylesheet" type="text/css" href="${ctx.basePath}/static/zui/css/zui.min.css" />
+    <link rel="stylesheet" type="text/css" href="${ctx.basePath}/static/zui/lib/datetimepicker/datetimepicker.css"/>
+    <script src="/volcano/static/js/jquery.min.js"></script>
 </head>
 <body>
 	你好
+	
+	<script type="text/javascript">
+		$(function(){
+		
+			$.ajax({
+				url: "${ctx.basePath}/getInformtionOfTerminal",
+				success:function(result){	
+					console.log(result);			
+				}
+			});
+		});
+	</script>
 </body>
 </html>

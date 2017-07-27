@@ -52,6 +52,104 @@ public class InformationOfTerminal extends BaseEntity implements Serializable{
 	
 	@Column(name = "是否支持WIFI")
 	private String isupportWifi;
+
+	public String getLogicID() {
+		return logicID;
+	}
+
+	public void setLogicID(String logicID) {
+		this.logicID = logicID;
+	}
+
+	public String getTerminalUniqueIdentifier() {
+		return terminalUniqueIdentifier;
+	}
+
+	public void setTerminalUniqueIdentifier(String terminalUniqueIdentifier) {
+		this.terminalUniqueIdentifier = terminalUniqueIdentifier;
+	}
+
+	public String getTerminalState() {
+		return terminalState;
+	}
+
+	public void setTerminalState(String terminalState) {
+		this.terminalState = terminalState;
+	}
+
+	public String getDomainName() {
+		return domainName;
+	}
+
+	public void setDomainName(String domainName) {
+		this.domainName = domainName;
+	}
+
+	public String getManufacturer() {
+		return manufacturer;
+	}
+
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+
+	public String getTypeOfDevice() {
+		return typeOfDevice;
+	}
+
+	public void setTypeOfDevice(String typeOfDevice) {
+		this.typeOfDevice = typeOfDevice;
+	}
+
+	public String getOUI() {
+		return OUI;
+	}
+
+	public void setOUI(String oUI) {
+		OUI = oUI;
+	}
+
+	public String getVersionOfHardware() {
+		return versionOfHardware;
+	}
+
+	public void setVersionOfHardware(String versionOfHardware) {
+		this.versionOfHardware = versionOfHardware;
+	}
+
+	public String getVersionOfSoftware() {
+		return versionOfSoftware;
+	}
+
+	public void setVersionOfSoftware(String versionOfSoftware) {
+		this.versionOfSoftware = versionOfSoftware;
+	}
+
+	public Date getLatestRegistrationTime() {
+		return latestRegistrationTime;
+	}
+
+	public void setLatestRegistrationTime(Date latestRegistrationTime) {
+		this.latestRegistrationTime = latestRegistrationTime;
+	}
+
+	public String getAddressOfTerminal() {
+		return addressOfTerminal;
+	}
+
+	public void setAddressOfTerminal(String addressOfTerminal) {
+		this.addressOfTerminal = addressOfTerminal;
+	}
+
+	public String getIsupportWifi() {
+		return isupportWifi;
+	}
+
+	public void setIsupportWifi(String isupportWifi) {
+		this.isupportWifi = isupportWifi;
+	}
+	
+	
 	
 }
 

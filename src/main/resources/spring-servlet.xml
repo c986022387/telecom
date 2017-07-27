@@ -1,7 +1,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:cache="http://www.springframework.org/schema/cache"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -35,7 +38,9 @@
 
 	<!-- 加<mvc:resources...前，要加上<mvc:annotation-driver/>，否则servlet控件器会解析失败-->
 	<mvc:annotation-driven />
-	<mvc:resources mapping="/static/**" location="/static/" />
+	
+	<mvc:default-servlet-handler/>
+	
 
 	<!-- aop开启@Aspect支持 -->
 	<aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"></aop:aspectj-autoproxy>
