@@ -1,0 +1,200 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/data/jpa
+        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/cache  
+        http://www.springframework.org/schema/cache/spring-cache.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+
+	<!--加载属性配置文件 -->
+	<context:property-placeholder location="classpath:application.properties" />
+	<!-- 开启注解 -->
+	<context:annotation-config />
+
+	<aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"/>
+	<jpa:repositories base-package="cn.com.telecom.repository"></jpa:repositories>
+	<!-- spring扫描注解的配置 -->
+	<context:component-scan base-package="cn.com.telecom.service, cn.com.telecom.controller"></context:component-scan>
+	<!-- 开启这个配置，spring才能识别@Scheduled注解 -->
+	<task:annotation-driven />
+
+	<!-- 加<mvc:resources...前，要加上<mvc:annotation-driver/>，否则servlet控件器会解析失败-->
+	<mvc:annotation-driven />
+	<mvc:resources mapping="/static/**" location="/static/" />
+
+	<!-- aop开启@Aspect支持 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"></aop:aspectj-autoproxy>
+
+	<!-- 按照BeanName解析视图 -->
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+	    <property name="order" value="1" /> <!-- 优先使用此视图解析,避免先被解析为JSP -->
+	</bean>
+
+	<!--通用视图解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.InternalResourceView" />
+		<property name="prefix" value="/WEB-INF/views/"></property>
+		<property name="suffix" value=".html"></property>
+		<property name="order" value="1" />
+	</bean>
+
+	<!-- 配置freeMarker视图解析器 -->
+	<bean id="viewResolverFtl"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+		<property name="contentType" value="text/html; charset=utf-8" />
+		<property name="cache" value="true" />
+		<property name="suffix" value=".ftl" />
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<!-- session遇到重复的值，也会直接使用Map中的put方法将旧值覆盖。 -->
+		<property name="allowSessionOverride" value="true" />
+		<property name="requestContextAttribute" value="request" />
+		<property name="order" value="0" />
+	</bean>
+	<!-- ftl参数配置 -->
+	<bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location" value="classpath:freemarker.properties" />
+	</bean>
+	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
+	<!-- 配置freeMarker的模板路径 -->
+	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath">
+			<value>/WEB-INF/views/</value>
+		</property>
+		<property name="freemarkerVariables">
+			<map>
+				<entry key="xml_escape" value-ref="fmXmlEscape" />
+			</map>
+		</property>
+		<property name="defaultEncoding">
+			<value>utf-8</value>
+		</property>
+		<property name="freemarkerSettings" ref="freemarkerConfiguration"></property>
+	</bean>
+
+	<!-- 配置druid监控spring jdbc -->
+	<bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor"></bean>
+	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
+		<property name="patterns">
+			<list>
+				<value>cn.com.telecom.service.*</value>
+			</list>
+		</property>
+	</bean>
+	<aop:config>
+		<aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
+	</aop:config>
+
+	<!-- mysql数据源配置 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<!-- 驱动名称 -->
+		<property name="DriverClassName" value="${jdbc.driver}" />
+		<!-- JDBC连接串 -->
+		<property name="url" value="${jdbc.url}" />
+		<!-- 数据库用户名称 -->
+		<property name="username" value="${jdbc.username}" />
+		<!-- 数据库密码 -->
+		<property name="password" value="${jdbc.password}" />
+		<!-- 连接池最大使用连接数量 -->
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<!-- 初始化大小 -->
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="${jdbc.minIdl}" />
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="${jdbc.maxWait}" />
+		<!-- 逐出连接的检测时间间隔 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}" />
+		<!-- 最小逐出时间 -->
+		<property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}" />
+		<!-- 测试有效用的SQL Query -->
+		<property name="validationQuery" value="SELECT 'x'" />
+		<!-- 连接空闲时测试是否有效 -->
+		<property name="testWhileIdle" value="${jdbc.testWhileIdle}" />
+		<!-- 获取连接时测试是否有效 -->
+		<property name="testOnBorrow" value="${jdbc.testOnBorrow}" />
+		<!-- 归还连接时是否测试有效 -->
+		<property name="testOnReturn" value="${jdbc.testOnReturn}" />
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="false" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters" value="stat" />
+	</bean>
+
+	<!-- 整合mysqljpa -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<constructor-arg ref="entityManagerFactory"></constructor-arg>
+	</bean>
+	<tx:annotation-driven  transaction-manager="transactionManager" />
+
+	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="database" value="MYSQL"></property>
+		<property name="generateDdl" value="true"></property>
+		<property name="showSql" value="${hibernate.show_sql}"></property>
+	</bean>
+
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>
+		<property name="packagesToScan" value="cn.com.telecom.domain"></property>
+		<property name="jpaProperties">
+			<props>
+				<!--设置外连接抓取树的最大深度 -->
+				<prop key="hibernate.max_fetch_depth">${hibernate.max_fetch_depth}</prop>
+				<prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
+				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+				<!-- 自动建表类型 validate|create|create-drop|update -->
+				<!-- <prop key="hibernate.hbm2ddl.auto">validate</prop> -->
+				<!-- 是否显示SQL -->
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<!-- 显示SQL是否格式化 -->
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<!-- 关闭二级缓存 -->
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+				<!-- Load方法的延迟加载 -->
+				<prop key="hibernate.enable_lazy_load_no_trans">${hibernate.enable_lazy_load_no_trans}</prop>
+				<!-- 关闭实体字段映射校验 -->
+				<prop key="javax.persistence.validation.mode">none</prop>
+			</props>
+		</property>
+	</bean>
+	
+
+	<!-- 启用缓存注解功能(请将其配置在Spring主配置文件中) -->
+	<cache:annotation-driven cache-manager="cacheManager" />
+
+	<!-- Spring提供的基于的Ehcache实现的缓存管理器 -->
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="cacheManagerFactory" />
+	</bean>
+
+	<bean id="cacheManagerFactory"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache.xml" />
+		<property name="shared" value="true" />
+	</bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="104857600"/>
+		<property name="maxInMemorySize" value="4096"/>
+	</bean>
+</beans>
