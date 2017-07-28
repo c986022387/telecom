@@ -86,4 +86,191 @@ public class InformationONU extends BaseEntity implements Serializable{
 	
 	@Column(name = "更新日期")
 	private String updateDate;
+
+	public String getInstallationPlace() {
+		return InstallationPlace;
+	}
+
+	public void setInstallationPlace(String installationPlace) {
+		InstallationPlace = installationPlace;
+	}
+
+	public String getDeviceID() {
+		return DeviceID;
+	}
+
+	public void setDeviceID(String deviceID) {
+		DeviceID = deviceID;
+	}
+
+	public String getManagerVPN() {
+		return ManagerVPN;
+	}
+
+	public void setManagerVPN(String managerVPN) {
+		ManagerVPN = managerVPN;
+	}
+
+	public String getManagerIP() {
+		return ManagerIP;
+	}
+
+	public void setManagerIP(String managerIP) {
+		ManagerIP = managerIP;
+	}
+
+	public String getOLTDevice() {
+		return OLTDevice;
+	}
+
+	public void setOLTDevice(String oLTDevice) {
+		OLTDevice = oLTDevice;
+	}
+
+	public String getOLTPort() {
+		return OLTPort;
+	}
+
+	public void setOLTPort(String oLTPort) {
+		OLTPort = oLTPort;
+	}
+
+	public String getONUID() {
+		return ONUID;
+	}
+
+	public void setONUID(String oNUID) {
+		ONUID = oNUID;
+	}
+
+	public String getMAC() {
+		return MAC;
+	}
+
+	public void setMAC(String mAC) {
+		MAC = mAC;
+	}
+
+	public String getDataPort() {
+		return DataPort;
+	}
+
+	public void setDataPort(String dataPort) {
+		DataPort = dataPort;
+	}
+
+	public String getVoicePort() {
+		return VoicePort;
+	}
+
+	public void setVoicePort(String voicePort) {
+		VoicePort = voicePort;
+	}
+
+	public String getSVLAN() {
+		return SVLAN;
+	}
+
+	public void setSVLAN(String sVLAN) {
+		SVLAN = sVLAN;
+	}
+
+	public String getCVLAN() {
+		return CVLAN;
+	}
+
+	public void setCVLAN(String cVLAN) {
+		CVLAN = cVLAN;
+	}
+
+	public String getVoiceVLANID() {
+		return VoiceVLANID;
+	}
+
+	public void setVoiceVLANID(String voiceVLANID) {
+		VoiceVLANID = voiceVLANID;
+	}
+
+	public String getONUVoiceIP() {
+		return ONUVoiceIP;
+	}
+
+	public void setONUVoiceIP(String oNUVoiceIP) {
+		ONUVoiceIP = oNUVoiceIP;
+	}
+
+	public String getONUIPMask() {
+		return ONUIPMask;
+	}
+
+	public void setONUIPMask(String oNUIPMask) {
+		ONUIPMask = oNUIPMask;
+	}
+
+	public String getONUIPGateway() {
+		return ONUIPGateway;
+	}
+
+	public void setONUIPGateway(String oNUIPGateway) {
+		ONUIPGateway = oNUIPGateway;
+	}
+
+	public String getGatewayCluster() {
+		return GatewayCluster;
+	}
+
+	public void setGatewayCluster(String gatewayCluster) {
+		GatewayCluster = gatewayCluster;
+	}
+
+	public String getSSnodeID() {
+		return SSnodeID;
+	}
+
+	public void setSSnodeID(String sSnodeID) {
+		SSnodeID = sSnodeID;
+	}
+
+	public String getDrnodeID() {
+		return drnodeID;
+	}
+
+	public void setDrnodeID(String drnodeID) {
+		this.drnodeID = drnodeID;
+	}
+
+	public String getLightsplitter() {
+		return Lightsplitter;
+	}
+
+	public void setLightsplitter(String lightsplitter) {
+		Lightsplitter = lightsplitter;
+	}
+
+	public String getPlanDate() {
+		return planDate;
+	}
+
+	public void setPlanDate(String planDate) {
+		this.planDate = planDate;
+	}
+
+	public String getStarDate() {
+		return starDate;
+	}
+
+	public void setStarDate(String starDate) {
+		this.starDate = starDate;
+	}
+
+	public String getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
+	
+	
+	
 }
