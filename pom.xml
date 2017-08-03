@@ -1,41 +1,53 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>telecom</groupId>
-  <artifactId>volcano</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  
-  <build>
-		<finalName>volcano</finalName>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.6</version>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-	
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>telecom</groupId>
+	<artifactId>volcano</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring-framework.version>4.3.5.RELEASE</spring-framework.version>
 		<spring-security.version>4.2.2.RELEASE</spring-security.version>
 		<junit.version>4.12</junit.version>
+		<warPackageName>volcano</warPackageName>
+		<tomcat.deploy.server>LocalServer</tomcat.deploy.server>
+		<tomcat.deploy.serverUrl>http://localhost:8080/manager/volcano</tomcat.deploy.serverUrl>
 	</properties>
-  
-  <dependencies>
-    <dependency>
+
+	<profiles>
+		<profile>
+			<id>gotoServer</id>
+			<properties>
+				<tomcat.deploy.server>CentOSServer</tomcat.deploy.server>
+				<tomcat.deploy.serverUrl>http://47.93.61.47:8080/manager/text</tomcat.deploy.serverUrl>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+		<finalName>${warPackageName}</finalName>
+		<plugins>
+			
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<server>${tomcat.deploy.server}</server>
+					<url>${tomcat.deploy.serverUrl}</url>
+					<path>/${warPackageName}</path>
+				</configuration>
+			</plugin>
+			
+			
+		</plugins>
+	</build>
+
+
+
+	<dependencies>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
@@ -88,7 +100,7 @@
 			<artifactId>spring-data-redis</artifactId>
 			<version>1.7.6.RELEASE</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session</artifactId>
@@ -204,7 +216,7 @@
 			<artifactId>aopalliance</artifactId>
 			<version>1.0</version>
 		</dependency>
-  </dependencies>
-  
-  
+	</dependencies>
+
+
 </project>
