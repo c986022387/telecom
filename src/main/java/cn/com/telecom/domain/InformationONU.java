@@ -25,7 +25,7 @@ public class InformationONU extends BaseEntity implements Serializable{
 	private String DeviceID;
 	
 	@Column(name="网管VN")
-	private String ManagerVN;
+	private String ManagerVLAN;
 	
 	@Column(name = "网管IP")
 	private String ManagerIP;
@@ -103,12 +103,12 @@ public class InformationONU extends BaseEntity implements Serializable{
 		DeviceID = deviceID;
 	}
 
-	public String getManagerVPN() {
-		return ManagerVN;
+	public String getManagerVLAN() {
+		return ManagerVLAN;
 	}
 
-	public void setManagerVN(String managerVPN) {
-		ManagerVN = managerVPN;
+	public void setManagerVLAN(String managerVLAN) {
+		ManagerVLAN = managerVLAN;
 	}
 
 	public String getManagerIP() {
