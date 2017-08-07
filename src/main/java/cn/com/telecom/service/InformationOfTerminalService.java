@@ -10,8 +10,7 @@ import cn.com.telecom.repository.InformationOfTerminalRepository;
 
 @Service
 public class InformationOfTerminalService {
-	
-	
+		
 	@Autowired
 	private InformationOfTerminalRepository informationOfTerminalRepository;
 	
