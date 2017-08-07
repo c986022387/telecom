@@ -8,18 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.com.telecom.domain.InformationOfTerminal;
-import cn.com.telecom.service.AjaxService;
+import cn.com.telecom.service.InformationOfTerminalService;
 
 @RestController
+@RequestMapping("InformationOfTerminalController")
 @Transactional
-public class AjaxController {
+public class InformationOfTerminalController {
 	
 	@Autowired
-	private AjaxService ajaxService;
+	private InformationOfTerminalService informationOfTerminalService;
 	
-	@RequestMapping(name = "getInformtionOfTerminal")
+	@RequestMapping(name = "/getAll")
 	public List<InformationOfTerminal> getInformtionOfTerminal(){
-		List<InformationOfTerminal> list = this.ajaxService.getAll();
+		List<InformationOfTerminal> list = this.informationOfTerminalService.getAll();
 		System.out.println(list);
 		return list;
 	}
