@@ -148,7 +148,7 @@ public class InformationOfTerminal extends BaseEntity implements Serializable{
 	public void setIsupportWifi(String isupportWifi) {
 		this.isupportWifi = isupportWifi;
 	}
-	
+
 	
 	
 }

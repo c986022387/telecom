@@ -12,4 +12,6 @@ public interface InformationOfTerminalRepository extends CrudRepository<Informat
 	
 	List<InformationOfTerminal> findAll();
 	
+	InformationOfTerminal findById(int id);
+	
 }
