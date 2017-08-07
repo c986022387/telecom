@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.com.telecom.domain.CongestionDetailOfPON;
 import cn.com.telecom.domain.InformationOfTerminal;
-import cn.com.telecom.repository.CongestionDetailOfPONRepository;
 import cn.com.telecom.repository.InformationOfTerminalRepository;
 
 @Service

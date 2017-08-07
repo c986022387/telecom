@@ -7,20 +7,20 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.com.telecom.domain.InformationOfTerminal;
-import cn.com.telecom.service.InformationOfTerminalService;
+import cn.com.telecom.domain.CongestionDetailOfPON;
+import cn.com.telecom.service.CongestionDetailOfPONService;
 
 @RestController
-@RequestMapping("InformationOfTerminalController")
+@RequestMapping("/CongestionDetailOfPON")
 @Transactional
-public class InformationOfTerminalController {
+public class CongestionDetailOfPONController {
 	
 	@Autowired
-	private InformationOfTerminalService informationOfTerminalService;
+	private CongestionDetailOfPONService congestionDetailOfPONService;
 	
 	@RequestMapping(name = "/getAll")
-	public List<InformationOfTerminal> getAll(){
-		List<InformationOfTerminal> list = this.informationOfTerminalService.getAll();
+	public List<CongestionDetailOfPON> getAll(){
+		List<CongestionDetailOfPON> list = this.congestionDetailOfPONService.getAll();
 		System.out.println(list);
 		return list;
 	}
