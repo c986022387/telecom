@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import cn.com.telecom.domain.InformationOfTerminal;
 
 @Repository
-public interface InformationOfTerminalRepository extends CrudRepository<InformationOfTerminal, Integer>{
+public interface InformationOfTerminalRepository extends CrudRepository<InformationOfTerminal, Integer>, JpaSpecificationExecutor<InformationOfTerminal>{
 	
 	List<InformationOfTerminal> findAll();
 	
