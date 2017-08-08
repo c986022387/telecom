@@ -10,8 +10,6 @@ import cn.com.telecom.domain.FTTB_IP_NGN;
 @Repository
 public interface FTTB_IP_NGNRepository extends CrudRepository<FTTB_IP_NGN, Integer>{
 	
-	List<FTTB_IP_NGN> findall();
+	List<FTTB_IP_NGN> findAll();
 	
-	FTTB_IP_NGN findById();
-
 }

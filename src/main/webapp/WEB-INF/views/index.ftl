@@ -16,7 +16,7 @@
 		$(function(){
 		
 			$.ajax({
-				url: "${ctx.basePath}/getInformtionOfTerminal",
+				url: "${ctx.basePath}/informationOfTerminal/pageAll?ascOrDesc='desc'&pageIndex=1&pageSize=5",
 				success:function(result){	
 					console.log(result);			
 				}
