@@ -11,6 +11,9 @@
 </head>
 <body>
 	你好<br>
+	
+	<div class="json"></div>
+	
 	<div class="input-group" >
 	  <input type="text" class="form-control" placeholder="设备名称" id="name">
 	  <span class="input-group-addon fix-border fix-padding"></span>
@@ -28,6 +31,7 @@
 				url: "${ctx.basePath}/informationOfTerminal/pageAll?ascOrDesc='asc'&pageIndex=1&pageSize=5",
 				success:function(result){	
 					console.log(result);
+					$(".json").append(result);
 				}
 			});
 			

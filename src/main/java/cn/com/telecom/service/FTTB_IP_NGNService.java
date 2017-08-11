@@ -11,29 +11,29 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import cn.com.telecom.domain.FTTB_IP_IMS;
-import cn.com.telecom.repository.FTTB_IP_IMSRepository;
+import cn.com.telecom.domain.FTTB_IP_NGN;
+import cn.com.telecom.repository.FTTB_IP_NGNRepository;
 import cn.com.telecom.util.Utils;;
 
 @Service
-public class FTTB_IP_IMSService {
+public class FTTB_IP_NGNService {
 
 	@Autowired
-	private FTTB_IP_IMSRepository fttb_IP_IMSRepository;
+	private FTTB_IP_NGNRepository FTTB_IP_NGNRepository;
 
-	public Page<FTTB_IP_IMS> pageAll(String ascOrDesc, Integer pageIndex, Integer pageSize, String olt) {
+	public Page<FTTB_IP_NGN> pageAll(String ascOrDesc, Integer pageIndex, Integer pageSize, String olt) {
 		PageRequest pageRequest = Utils.getPageRequest(ascOrDesc, "id", pageIndex, pageSize);
 		//动态生成where语句
-		Specification<FTTB_IP_IMS> specification = getWhereClause(olt);
-		return this.fttb_IP_IMSRepository.findAll(specification, pageRequest);
+		Specification<FTTB_IP_NGN> specification = getWhereClause(olt);
+		return this.FTTB_IP_NGNRepository.findAll(specification, pageRequest);
 	}
 
 	
-	private Specification<FTTB_IP_IMS> getWhereClause(final String olt) {
+	private Specification<FTTB_IP_NGN> getWhereClause(final String olt) {
 		
-		return new Specification<FTTB_IP_IMS>() {
+		return new Specification<FTTB_IP_NGN>() {
 
-			public Predicate toPredicate(Root<FTTB_IP_IMS> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<FTTB_IP_NGN> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate predicate = null;
 				if(olt != null && !"".equals(olt.trim())) {
 					predicate = cb.like(root.get("OLT").as(String.class), "%" + olt + "%");

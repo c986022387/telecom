@@ -1,9 +1,9 @@
 package cn.com.telecom.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.com.telecom.domain.FTTB_IP_IMS;
@@ -16,11 +16,9 @@ public class FTTB_IP_IMSController {
 	@Autowired
 	private FTTB_IP_IMSService fttb_IP_IMSService;
 	
-	@RequestMapping(name = "/getAll")
-	public List<FTTB_IP_IMS> getAll(){
-		List<FTTB_IP_IMS> list = this.fttb_IP_IMSService.getAll();
-		System.out.println(list);
-		return list;
+	@RequestMapping(name = "/info")
+	public Page<FTTB_IP_IMS> info(@RequestParam Integer pageIndex, @RequestParam String ascOrDesc, @RequestParam Integer pageSize, @RequestParam String olt){
+		return this.fttb_IP_IMSService.pageAll(ascOrDesc, pageIndex, pageSize, olt);
 	}
 	
 }
