@@ -14,7 +14,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import cn.com.telecom.domain.InformationOfTerminal;
-import cn.com.telecom.domain.Items;
 import cn.com.telecom.repository.InformationOfTerminalRepository;
 import cn.com.telecom.util.Utils;
 
@@ -37,9 +36,8 @@ public class InformationOfTerminalService {
 	 * @param pageSize 每页数量
 	 * @return
 	 */
-	public Items<InformationOfTerminal> findAll(String ascOrDesc, Integer pageIndex, Integer pageSize){
-		Items<InformationOfTerminal> items = getItems(ascOrDesc, pageIndex, pageSize);
-		return items;
+	public Page<InformationOfTerminal> findAll(String ascOrDesc, Integer pageIndex, Integer pageSize){
+		return this.informationOfTerminalRepository.findAll(Utils.getPageRequest(ascOrDesc, "id", pageIndex, pageSize));
 	}
 	
 	/**
@@ -49,47 +47,17 @@ public class InformationOfTerminalService {
 	 * @param pageSize
 	 * @return
 	 */
-	public Items<InformationOfTerminal> findByMultiple(String ascOrDesc, Integer pageIndex, Integer pageSize){
-		Items<InformationOfTerminal> items = getItemsByMultiple(ascOrDesc, pageIndex, pageSize);
-		return items;
-	}
-
-	
-	/**
-	 * 动态生成where语句查询并分装items
-	 * @param ascOrDesc
-	 * @param pageIndex
-	 * @param pageSize
-	 * @return
-	 */
-	private Items<InformationOfTerminal> getItemsByMultiple(String ascOrDesc, Integer pageIndex, Integer pageSize) {
+	public Page<InformationOfTerminal> findByMultiple(String ascOrDesc, Integer pageIndex, Integer pageSize){
 		PageRequest pageRequest = Utils.getPageRequest(ascOrDesc, "id", pageIndex, pageSize);
 		//动态生成Where语句
 		Specification<InformationOfTerminal> specification = getWhereClause();
 		Page<InformationOfTerminal> page = this.informationOfTerminalRepository.findAll(specification,pageRequest);
-		
-		Items<InformationOfTerminal> items = new Items<InformationOfTerminal>();
-		items.setPageIndex(pageIndex);
-		items.setPageSize(pageSize);
-		items.setT(page);
-		return items;
+		return page;
 	}
 
 	
-	/**
-	 * 查询全部并封装Items
-	 * @param ascOrDesc
-	 * @param pageIndex
-	 * @param pageSize
-	 * @return
-	 */
-	private Items<InformationOfTerminal> getItems(String ascOrDesc, Integer pageIndex, Integer pageSize) {
-		Items<InformationOfTerminal> items = new Items<InformationOfTerminal>();
-		items.setPageIndex(pageIndex);
-		items.setPageSize(pageSize);
-		items.setT(informationOfTerminalRepository.findAll(Utils.getPageRequest(ascOrDesc, "id", pageIndex, pageSize)));
-		return items;
-	}
+
+	
 	
 	/**
 	 * 动态生成where语句

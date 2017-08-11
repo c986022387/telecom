@@ -17,6 +17,9 @@ public class InformationONU extends BaseEntity implements Serializable{
 	/**
 	 * 
 	 */
+	
+	@Column(name="设备名称")
+	private String name;
 
 	@Column(name="安装地点")
 	private String InstallationPlace;
@@ -86,6 +89,16 @@ public class InformationONU extends BaseEntity implements Serializable{
 	
 	@Column(name = "更新日期")
 	private String updateDate;
+
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getInstallationPlace() {
 		return InstallationPlace;

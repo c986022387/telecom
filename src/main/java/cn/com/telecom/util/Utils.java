@@ -15,6 +15,7 @@ public class Utils {
 	 */
 	public static PageRequest getPageRequest(String ascOrDesc, String orderBy, Integer pageIndex, Integer pageSize ) {
 		Sort sort = ascOrDesc.equals("asc") ? new Sort(Sort.Direction.ASC,orderBy) : new Sort(Sort.Direction.DESC,orderBy);
+		//页码从0开始，在这里统一减一页就好
 		return new PageRequest(pageIndex - 1, pageSize, sort);
 	}
 	
