@@ -169,7 +169,7 @@
 				<prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
 				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
 				<!-- 自动建表类型 validate|create|create-drop|update -->
-				<!-- <prop key="hibernate.hbm2ddl.auto">validate</prop> -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<!-- 是否显示SQL -->
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 				<!-- 显示SQL是否格式化 -->

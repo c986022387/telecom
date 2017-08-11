@@ -24,7 +24,7 @@ public class InformationONU extends BaseEntity implements Serializable{
 	@Column(name="设备型号")
 	private String DeviceID;
 	
-	@Column(name="网管VN")
+	@Column(name="网管VLAN")
 	private String ManagerVLAN;
 	
 	@Column(name = "网管IP")
@@ -57,7 +57,7 @@ public class InformationONU extends BaseEntity implements Serializable{
 	@Column(name = "语音VLAN_ID")
 	private String VoiceVLANID;
 	
-	@Column(name = "ONU语音IP",unique = true)
+	@Column(name = "ONU语音IP")
 	private String ONUVoiceIP;
 	
 	@Column(name = "ONU_IP的掩码")

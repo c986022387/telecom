@@ -10,15 +10,16 @@
     <script src="/volcano/static/js/jquery.min.js"></script>
 </head>
 <body>
-	你好
-	
+	你好<br>
+	<div class="json"></div>
 	<script type="text/javascript">
 		$(function(){
 		
 			$.ajax({
 				url: "${ctx.basePath}/informationOfTerminal/pageAll?ascOrDesc='desc'&pageIndex=1&pageSize=5",
 				success:function(result){	
-					console.log(result);			
+					console.log(result);
+					$(".json").append(JSON.stringify(result));		
 				}
 			});
 		});
