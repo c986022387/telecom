@@ -65,6 +65,16 @@
 	  </span>
 	</div><br><br>
 	
+	UP_LINK：<br>
+	<div class="input-group" >
+	  <input type="text" class="form-control" placeholder="UP_LINK_oltDeviceName" id="UP_LINK_oltDeviceName">
+	  <span class="input-group-addon fix-border fix-padding"></span>
+	  <input type="text" class="form-control" placeholder="UP_LINK_serviceName" id="UP_LINK_serviceName">
+	  <span class="input-group-btn">
+		<button id="UP_LINK" class="btn btn-default" type="button">搜索</button>
+	  </span>
+	</div><br><br>
+	
 	<div id="json"></div>
 	<script type="text/javascript">
 		$(function(){
@@ -135,6 +145,17 @@
 				var InformationPON_sVlan = $("#InformationPON_sVlan").val();
 				$.ajax({
 					url: "${ctx.basePath}/pon/info?ascOrDesc=asc&pageIndex=1&pageSize=10&deviceName=" + InformationPON_deviceName + "&sVlan=" + InformationPON_sVlan,
+					success:function(result){	
+						console.log(result);
+					}
+				});
+			});
+			
+			$("#UP_LINK").click(function(){
+				var UP_LINK_oltDeviceName = $("#UP_LINK_oltDeviceName").val();
+				var UP_LINK_serviceName = $("#UP_LINK_serviceName").val();
+				$.ajax({
+					url: "${ctx.basePath}/up_link/info?ascOrDesc=asc&pageIndex=1&pageSize=10&oltDeviceName=" + UP_LINK_oltDeviceName + "&serviceName=" + UP_LINK_serviceName,
 					success:function(result){	
 						console.log(result);
 					}
