@@ -10,13 +10,13 @@ import cn.com.telecom.domain.FTTB_IP_IMS;
 import cn.com.telecom.service.FTTB_IP_IMSService;
 
 @RestController
-@RequestMapping("/FTTB_IP_IMSController")
+@RequestMapping("ims")
 public class FTTB_IP_IMSController {
 	
 	@Autowired
 	private FTTB_IP_IMSService fttb_IP_IMSService;
 	
-	@RequestMapping(name = "/info")
+	@RequestMapping(value = "info")
 	public Page<FTTB_IP_IMS> info(@RequestParam Integer pageIndex, @RequestParam String ascOrDesc, @RequestParam Integer pageSize, @RequestParam String olt){
 		return this.fttb_IP_IMSService.pageAll(ascOrDesc, pageIndex, pageSize, olt);
 	}

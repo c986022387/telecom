@@ -10,13 +10,13 @@ import cn.com.telecom.domain.FTTB_IP_NGN;
 import cn.com.telecom.service.FTTB_IP_NGNService;
 
 @RestController
-@RequestMapping("/FTTB_IP_NGNController")
+@RequestMapping("/ngn")
 public class FTTB_IP_NGNController {
 	
 	@Autowired
 	private FTTB_IP_NGNService FTTB_IP_NGNService;
 	
-	@RequestMapping(name = "/info")
+	@RequestMapping(value = "/info")
 	public Page<FTTB_IP_NGN> info(@RequestParam Integer pageIndex, @RequestParam String ascOrDesc, @RequestParam Integer pageSize, @RequestParam String olt){
 		return this.FTTB_IP_NGNService.pageAll(ascOrDesc, pageIndex, pageSize, olt);
 	}

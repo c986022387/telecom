@@ -1,5 +1,8 @@
 package cn.com.telecom.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -25,6 +28,7 @@ public class FTTB_IP_IMSService {
 		PageRequest pageRequest = Utils.getPageRequest(ascOrDesc, "id", pageIndex, pageSize);
 		//动态生成where语句
 		Specification<FTTB_IP_IMS> specification = getWhereClause(olt);
+		//System.out.println(specification);
 		return this.fttb_IP_IMSRepository.findAll(specification, pageRequest);
 	}
 
@@ -34,11 +38,12 @@ public class FTTB_IP_IMSService {
 		return new Specification<FTTB_IP_IMS>() {
 
 			public Predicate toPredicate(Root<FTTB_IP_IMS> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				Predicate predicate = null;
+				List<Predicate> list = new ArrayList<Predicate>();
 				if(olt != null && !"".equals(olt.trim())) {
-					predicate = cb.like(root.get("OLT").as(String.class), "%" + olt + "%");
+					list.add(cb.like(root.get("OLT").as(String.class), "%" + olt + "%"));
 				}
-				return query.where(predicate).getRestriction();
+				Predicate[] predicate = new Predicate[list.size()];
+				return query.where(list.toArray(predicate)).getRestriction();
 			}
 			
 		};

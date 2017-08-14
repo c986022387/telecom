@@ -10,10 +10,7 @@
     <script src="/volcano/static/js/jquery.min.js"></script>
 </head>
 <body>
-	你好<br>
-	
-	<div class="json"></div>
-	
+	终端信息：<br>
 	<div class="input-group" >
 	  <input type="text" class="form-control" placeholder="设备名称" id="name">
 	  <span class="input-group-addon fix-border fix-padding"></span>
@@ -23,7 +20,26 @@
 	  <span class="input-group-btn">
 		<button id="informationONU" class="btn btn-default" type="button">搜索</button>
 	  </span>
-	</div>
+	</div><br><br>
+	
+	
+	FTTB_IP_IMS：<br>
+	<div class="input-group" >
+	  <input type="text" class="form-control" placeholder="IMS_OLT" id="IMS_OLT">
+	  <span class="input-group-btn">
+		<button id="FTTB_IP_IMS" class="btn btn-default" type="button">搜索</button>
+	  </span>
+	</div><br><br>
+	
+	FTTB_IP_NGN：<br>
+	<div class="input-group" >
+	  <input type="text" class="form-control" placeholder="NGN_OLT" id="NGN_OLT">
+	  <span class="input-group-btn">
+		<button id="FTTB_IP_NGN" class="btn btn-default" type="button">搜索</button>
+	  </span>
+	</div><br><br>
+	
+	<div id="json"></div>
 	<script type="text/javascript">
 		$(function(){
 		
@@ -31,7 +47,8 @@
 				url: "${ctx.basePath}/informationOfTerminal/pageAll?ascOrDesc='asc'&pageIndex=1&pageSize=5",
 				success:function(result){	
 					console.log(result);
-					$(".json").append(result);
+					//$("#json").append(JSON.stringify(result));
+					console.log("完成");
 				}
 			});
 			
@@ -40,12 +57,33 @@
 				var ONUVoiceIP = $("#ONUVoiceIP").val();
 				var SSnodeID = $("#SSnodeID").val();
 				$.ajax({
-				url: "${ctx.basePath}/infotmationONU/info?ascOrDesc=asc&pageIndex=1&pageSize=10&name="+name+"&ONUVoiceIP="+ONUVoiceIP+"&SSnodeID="+SSnodeID,
-				success:function(result){	
-					console.log(result);
-				}
+					url: "${ctx.basePath}/infotmationONU/info?ascOrDesc=asc&pageIndex=1&pageSize=10&name="+name+"&ONUVoiceIP="+ONUVoiceIP+"&SSnodeID="+SSnodeID,
+					success:function(result){	
+						console.log(result);
+					}
+				});
 			});
+			
+			$("#FTTB_IP_IMS").click(function(){
+				var IMS_OLT = $("#IMS_OLT").val();
+				$.ajax({
+					url: "${ctx.basePath}/ims/info?ascOrDesc=asc&pageIndex=1&pageSize=10&olt="+IMS_OLT,
+					success:function(result){	
+						console.log(result);
+					}
+				});
 			});
+			
+			$("#FTTB_IP_NGN").click(function(){
+				var NGN_OLT = $("#NGN_OLT").val();
+				$.ajax({
+					url: "${ctx.basePath}/ngn/info?ascOrDesc=asc&pageIndex=1&pageSize=10&olt="+NGN_OLT,
+					success:function(result){	
+						console.log(result);
+					}
+				});
+			});
+			
 		});
 	</script>
 </body>
