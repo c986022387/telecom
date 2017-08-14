@@ -47,6 +47,14 @@
 	  </span>
 	</div><br><br>
 	
+	InformationOLT：<br>
+	<div class="input-group" >
+	  <input type="text" class="form-control" placeholder="InformationOLT_OLT" id="InformationOLT_OLT">
+	  <span class="input-group-btn">
+		<button id="InformationOLT" class="btn btn-default" type="button">搜索</button>
+	  </span>
+	</div><br><br>
+	
 	<div id="json"></div>
 	<script type="text/javascript">
 		$(function(){
@@ -96,6 +104,16 @@
 				var FTTH_IP_OLT = $("#FTTH_IP_OLT").val();
 				$.ajax({
 					url: "${ctx.basePath}/ftth/info?ascOrDesc=asc&pageIndex=1&pageSize=10&olt="+FTTH_IP_OLT,
+					success:function(result){	
+						console.log(result);
+					}
+				});
+			});
+			
+			$("#InformationOLT").click(function(){
+				var InformationOLT_OLT = $("#InformationOLT_OLT").val();
+				$.ajax({
+					url: "${ctx.basePath}/olt/info?ascOrDesc=asc&pageIndex=1&pageSize=10&olt="+InformationOLT_OLT,
 					success:function(result){	
 						console.log(result);
 					}
