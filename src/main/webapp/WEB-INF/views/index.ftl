@@ -55,6 +55,16 @@
 	  </span>
 	</div><br><br>
 	
+	InformationPON：<br>
+	<div class="input-group" >
+	  <input type="text" class="form-control" placeholder="InformationPON_deviceName" id="InformationPON_deviceName">
+	  <span class="input-group-addon fix-border fix-padding"></span>
+	  <input type="text" class="form-control" placeholder="InformationPON_sVlan" id="InformationPON_sVlan">
+	  <span class="input-group-btn">
+		<button id="InformationPON" class="btn btn-default" type="button">搜索</button>
+	  </span>
+	</div><br><br>
+	
 	<div id="json"></div>
 	<script type="text/javascript">
 		$(function(){
@@ -114,6 +124,17 @@
 				var InformationOLT_OLT = $("#InformationOLT_OLT").val();
 				$.ajax({
 					url: "${ctx.basePath}/olt/info?ascOrDesc=asc&pageIndex=1&pageSize=10&olt="+InformationOLT_OLT,
+					success:function(result){	
+						console.log(result);
+					}
+				});
+			});
+			
+			$("#InformationPON").click(function(){
+				var InformationPON_deviceName = $("#InformationPON_deviceName").val();
+				var InformationPON_sVlan = $("#InformationPON_sVlan").val();
+				$.ajax({
+					url: "${ctx.basePath}/pon/info?ascOrDesc=asc&pageIndex=1&pageSize=10&deviceName=" + InformationPON_deviceName + "&sVlan=" + InformationPON_sVlan,
 					success:function(result){	
 						console.log(result);
 					}

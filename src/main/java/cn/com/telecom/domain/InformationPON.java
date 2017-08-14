@@ -16,115 +16,115 @@ public class InformationPON extends BaseEntity implements Serializable{
 	private static final long serialVersionUID = -1896976446263662276L;
 
 	@Column(name="设备名称")
-	private String DeviceName;
+	private String deviceName;
 	
 	@Column(name="槽道顺序号")
-	private String SequenceNumber;
+	private String sequenceNumber;
 	
 	@Column(name="_0")
-	private String Zero;
+	private String zero;
 	
 	@Column(name = "svlan")
-	private String SVlan;
+	private String sVlan;
 	
 	@Column(name = "cvlan")
-	private String CVlan;
+	private String cVlan;
 	
 	@Column(name = "bas服务器ip")
-	private String BasServerIP;
+	private String basServerIP;
 	
 	@Column(name = "nas槽位")
-	private String NasSlot;
+	private String nasSlot;
 	
 	@Column(name = "nas子槽")
-	private String NasSonSlot;
+	private String nasSonSlot;
 	
 	@Column(name = "nas端口")
-	private String NasPort;
+	private String nasPort;
 	
 	@Column(name = "更新日期")
-	private String UpdateDate;
+	private String updateDate;
 
 	public String getDeviceName() {
-		return DeviceName;
+		return deviceName;
 	}
 
 	public void setDeviceName(String deviceName) {
-		DeviceName = deviceName;
+		this.deviceName = deviceName;
 	}
 
 	public String getSequenceNumber() {
-		return SequenceNumber;
+		return sequenceNumber;
 	}
 
 	public void setSequenceNumber(String sequenceNumber) {
-		SequenceNumber = sequenceNumber;
+		this.sequenceNumber = sequenceNumber;
 	}
 
 	public String getZero() {
-		return Zero;
+		return zero;
 	}
 
 	public void setZero(String zero) {
-		Zero = zero;
+		this.zero = zero;
 	}
 
-	public String getSVlan() {
-		return SVlan;
+	public String getsVlan() {
+		return sVlan;
 	}
 
-	public void setSVlan(String sVlan) {
-		SVlan = sVlan;
+	public void setsVlan(String sVlan) {
+		this.sVlan = sVlan;
 	}
 
-	public String getCVlan() {
-		return CVlan;
+	public String getcVlan() {
+		return cVlan;
 	}
 
-	public void setCVlan(String cVlan) {
-		CVlan = cVlan;
+	public void setcVlan(String cVlan) {
+		this.cVlan = cVlan;
 	}
 
 	public String getBasServerIP() {
-		return BasServerIP;
+		return basServerIP;
 	}
 
 	public void setBasServerIP(String basServerIP) {
-		BasServerIP = basServerIP;
+		this.basServerIP = basServerIP;
 	}
 
 	public String getNasSlot() {
-		return NasSlot;
+		return nasSlot;
 	}
 
 	public void setNasSlot(String nasSlot) {
-		NasSlot = nasSlot;
+		this.nasSlot = nasSlot;
 	}
 
 	public String getNasSonSlot() {
-		return NasSonSlot;
+		return nasSonSlot;
 	}
 
 	public void setNasSonSlot(String nasSonSlot) {
-		NasSonSlot = nasSonSlot;
+		this.nasSonSlot = nasSonSlot;
 	}
 
 	public String getNasPort() {
-		return NasPort;
+		return nasPort;
 	}
 
 	public void setNasPort(String nasPort) {
-		NasPort = nasPort;
+		this.nasPort = nasPort;
 	}
 
 	public String getUpdateDate() {
-		return UpdateDate;
+		return updateDate;
 	}
 
 	public void setUpdateDate(String updateDate) {
-		UpdateDate = updateDate;
+		this.updateDate = updateDate;
 	}
-	
+
 	
 	
 }
