@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PON")
-public class InfomationPON extends BaseEntity implements Serializable{
+public class InformationPON extends BaseEntity implements Serializable{
 
 	/**
 	 * 

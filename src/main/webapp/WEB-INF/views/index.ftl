@@ -39,6 +39,14 @@
 	  </span>
 	</div><br><br>
 	
+	FTTH_IP：<br>
+	<div class="input-group" >
+	  <input type="text" class="form-control" placeholder="FTTH_IP_OLT" id="FTTH_IP_OLT">
+	  <span class="input-group-btn">
+		<button id="FTTH_IP" class="btn btn-default" type="button">搜索</button>
+	  </span>
+	</div><br><br>
+	
 	<div id="json"></div>
 	<script type="text/javascript">
 		$(function(){
@@ -78,6 +86,16 @@
 				var NGN_OLT = $("#NGN_OLT").val();
 				$.ajax({
 					url: "${ctx.basePath}/ngn/info?ascOrDesc=asc&pageIndex=1&pageSize=10&olt="+NGN_OLT,
+					success:function(result){	
+						console.log(result);
+					}
+				});
+			});
+			
+			$("#FTTH_IP").click(function(){
+				var FTTH_IP_OLT = $("#FTTH_IP_OLT").val();
+				$.ajax({
+					url: "${ctx.basePath}/ftth/info?ascOrDesc=asc&pageIndex=1&pageSize=10&olt="+FTTH_IP_OLT,
 					success:function(result){	
 						console.log(result);
 					}

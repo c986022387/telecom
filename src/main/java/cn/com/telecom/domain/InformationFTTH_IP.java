@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 @Entity
 @Table(name = "FTTH_IP")
-public class InfomationFTTH_IP extends BaseEntity implements Serializable{
+public class InformationFTTH_IP extends BaseEntity implements Serializable{
 
 	/**
 	 * 
