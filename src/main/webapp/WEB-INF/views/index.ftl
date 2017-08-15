@@ -85,6 +85,16 @@
 	  </span>
 	</div><br><br>
 	
+	CongestionDetailOfUpLink：<br>
+	<div class="input-group" >
+	  <input type="text" class="form-control" placeholder="maximumBandwidthRatio_Out" id="maximumBandwidthRatio_Out2">
+	  <span class="input-group-addon fix-border fix-padding"></span>
+	  <input type="text" class="form-control" placeholder="maximumBandwidthRatio_In" id="maximumBandwidthRatio_In2">
+	  <span class="input-group-btn">
+		<button id="CongestionDetailOfUpLink" class="btn btn-default" type="button">搜索</button>
+	  </span>
+	</div><br><br>
+	
 	<div id="json"></div>
 	<script type="text/javascript">
 		$(function(){
@@ -177,6 +187,17 @@
 				var maximumBandwidthRatio_In = $("#maximumBandwidthRatio_In").val();
 				$.ajax({
 					url: "${ctx.basePath}/congestionDetailOfPON/info?ascOrDesc=asc&pageIndex=1&pageSize=10&maximumBandwidthRatio_In=" + maximumBandwidthRatio_In + "&maximumBandwidthRatio_Out=" + maximumBandwidthRatio_Out,
+					success:function(result){	
+						console.log(result);
+					}
+				});
+			});
+			
+			$("#CongestionDetailOfUpLink").click(function(){
+				var maximumBandwidthRatio_Out = $("#maximumBandwidthRatio_Out2").val();
+				var maximumBandwidthRatio_In = $("#maximumBandwidthRatio_In2").val();
+				$.ajax({
+					url: "${ctx.basePath}/congestionDetailOfUpLink/info?ascOrDesc=asc&pageIndex=1&pageSize=10&maximumBandwidthRatio_In=" + maximumBandwidthRatio_In + "&maximumBandwidthRatio_Out=" + maximumBandwidthRatio_Out,
 					success:function(result){	
 						console.log(result);
 					}

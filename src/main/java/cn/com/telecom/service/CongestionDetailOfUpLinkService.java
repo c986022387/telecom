@@ -14,27 +14,27 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import cn.com.telecom.domain.CongestionDetailOfPON;
-import cn.com.telecom.repository.CongestionDetailOfPONRepository;
+import cn.com.telecom.domain.CongestionDetailOfUpLink;
+import cn.com.telecom.repository.CongestionDetailOfUpLinkRepository;
 import cn.com.telecom.util.Utils;
 
 @Service
-public class CongestionDetailOfPONService {
+public class CongestionDetailOfUpLinkService {
 	
 	@Autowired
-	private CongestionDetailOfPONRepository congestionDetailOfPONRepository;
+	private CongestionDetailOfUpLinkRepository congestionDetailOfUpLinkRepository;
 	
-	public Page<CongestionDetailOfPON> pageAllByMutiple(String ascOrDesc, Integer pageIndex, Integer pageSize, Float maximumBandwidthRatio_Out, Float maximumBandwidthRatio_In){
+	public Page<CongestionDetailOfUpLink> pageAllByMutiple(String ascOrDesc, Integer pageIndex, Integer pageSize, Float maximumBandwidthRatio_Out, Float maximumBandwidthRatio_In){
 		PageRequest pageRequest = Utils.getPageRequest(ascOrDesc, "id", pageIndex, pageSize);
-		Specification<CongestionDetailOfPON> specification = getWhereClause(maximumBandwidthRatio_Out,maximumBandwidthRatio_In);
-		return this.congestionDetailOfPONRepository.findAll(specification, pageRequest);
+		Specification<CongestionDetailOfUpLink> specification = getWhereClause(maximumBandwidthRatio_Out,maximumBandwidthRatio_In);
+		return this.congestionDetailOfUpLinkRepository.findAll(specification, pageRequest);
 	}
 
 	
-	private Specification<CongestionDetailOfPON> getWhereClause(final Float maximumBandwidthRatio_Out, final Float maximumBandwidthRatio_In) {
+	private Specification<CongestionDetailOfUpLink> getWhereClause(final Float maximumBandwidthRatio_Out, final Float maximumBandwidthRatio_In) {
 		
-		return new Specification<CongestionDetailOfPON>() {
-			public Predicate toPredicate(Root<CongestionDetailOfPON> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+		return new Specification<CongestionDetailOfUpLink>() {
+			public Predicate toPredicate(Root<CongestionDetailOfUpLink> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				List<Predicate> list = new ArrayList<Predicate>();
 				if(maximumBandwidthRatio_Out != null) {
 					list.add(cb.greaterThanOrEqualTo(root.get("maximumBandwidthRatio_Out").as(Float.class), maximumBandwidthRatio_Out));
