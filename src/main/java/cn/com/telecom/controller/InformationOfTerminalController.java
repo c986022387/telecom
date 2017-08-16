@@ -11,16 +11,17 @@ import cn.com.telecom.domain.InformationOfTerminal;
 import cn.com.telecom.service.InformationOfTerminalService;
 
 @RestController 
-@RequestMapping("/informationOfTerminal")
+@RequestMapping("informationOfTerminal")
 public class InformationOfTerminalController {
 	
 	@Autowired
 	private InformationOfTerminalService informationOfTerminalService;
 	
 	
-	@RequestMapping(value = "/pageAll", method = RequestMethod.GET)
-	public Page<InformationOfTerminal> pageAll(@RequestParam String ascOrDesc, @RequestParam Integer pageIndex, @RequestParam Integer pageSize ){
-		return this.informationOfTerminalService.findAll(ascOrDesc,  pageIndex, pageSize);
+	@RequestMapping(value = "info")
+	public Page<InformationOfTerminal> info(@RequestParam String ascOrDesc, @RequestParam Integer pageIndex, @RequestParam Integer pageSize, @RequestParam String logicID, @RequestParam String terminalUniqueIdentifier, @RequestParam String manufacturer, @RequestParam String versionOfSoftware ){
+		
+		return this.informationOfTerminalService.pageAll(ascOrDesc, pageIndex, pageSize, logicID, terminalUniqueIdentifier, manufacturer, versionOfSoftware);
 	}
 	
 }

@@ -10,7 +10,22 @@
     <script src="/volcano/static/js/jquery.min.js"></script>
 </head>
 <body>
-	终端信息：<br>
+
+InfomationOfTerminal：<br>
+	<div class="input-group" >
+	  <input type="text" class="form-control" placeholder="逻辑ID" id="logicID">
+	  <span class="input-group-addon fix-border fix-padding"></span>
+	  <input type="text" class="form-control" placeholder="终端唯一标识符" id="terminalUniqueIdentifier">
+	  <span class="input-group-addon fix-border fix-padding"></span>
+	  <input type="text" class="form-control" placeholder="厂商" id="manufacturer">
+	  <span class="input-group-btn"></span>
+	  <input type="text" class="form-control" placeholder="软件版本" id="versionOfSoftware">
+	  <span class="input-group-btn">
+		<button id="informationOfTerminal" class="btn btn-default" type="button">搜索</button>
+	  </span>
+	</div><br><br>
+
+	InfomationONU：<br>
 	<div class="input-group" >
 	  <input type="text" class="form-control" placeholder="设备名称" id="name">
 	  <span class="input-group-addon fix-border fix-padding"></span>
@@ -98,22 +113,27 @@
 	<div id="json"></div>
 	<script type="text/javascript">
 		$(function(){
-		
-			$.ajax({
-				url: "${ctx.basePath}/informationOfTerminal/pageAll?ascOrDesc='asc'&pageIndex=1&pageSize=5",
-				success:function(result){	
-					console.log(result);
-					//$("#json").append(JSON.stringify(result));
-					console.log("完成");
-				}
-			});
 			
 			$("#informationONU").click(function(){
 				var name = $("#name").val();
 				var ONUVoiceIP = $("#ONUVoiceIP").val();
 				var SSnodeID = $("#SSnodeID").val();
 				$.ajax({
-					url: "${ctx.basePath}/infotmationONU/info?ascOrDesc=asc&pageIndex=1&pageSize=10&name="+name+"&ONUVoiceIP="+ONUVoiceIP+"&SSnodeID="+SSnodeID,
+					url: "${ctx.basePath}/infotmationONU/info?ascOrDesc=asc&pageIndex=1&pageSize=5&name="+name+"&ONUVoiceIP="+ONUVoiceIP+"&SSnodeID="+SSnodeID,
+					success:function(result){	
+						console.log(result);
+					}
+				});
+			});
+			
+			
+			$("#informationOfTerminal").click(function(){
+				var logicID = $("#logicID").val();
+				var terminalUniqueIdentifier = $("#terminalUniqueIdentifier").val();
+				var manufacturer = $("#manufacturer").val();
+				var versionOfSoftware = $("#versionOfSoftware").val();
+				$.ajax({
+					url: "${ctx.basePath}/informationOfTerminal/info?ascOrDesc=asc&pageIndex=1&pageSize=5&logicID="+logicID+"&terminalUniqueIdentifier="+terminalUniqueIdentifier+"&manufacturer="+manufacturer+"&versionOfSoftware="+versionOfSoftware,
 					success:function(result){	
 						console.log(result);
 					}
