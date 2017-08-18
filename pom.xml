@@ -34,7 +34,7 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<server>${tomcat.deploy.server}</server>
+					<server>${tomcat.deploy.server}</server> 
 					<url>${tomcat.deploy.serverUrl}</url>
 					<path>/${warPackageName}</path>
 				</configuration>

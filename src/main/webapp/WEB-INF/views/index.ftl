@@ -17,7 +17,7 @@ InfomationOfTerminal：<br>
 	  <span class="input-group-addon fix-border fix-padding"></span>
 	  <input type="text" class="form-control" placeholder="终端唯一标识符" id="terminalUniqueIdentifier">
 	  <span class="input-group-addon fix-border fix-padding"></span>
-	  <input type="text" class="form-control" placeholder="厂商" id="manufacturer">
+	  <input type="text" class="form-control" placeholder="型号" id="typeNumber">
 	  <span class="input-group-btn"></span>
 	  <input type="text" class="form-control" placeholder="软件版本" id="versionOfSoftware">
 	  <span class="input-group-btn">
@@ -130,12 +130,13 @@ InfomationOfTerminal：<br>
 			$("#informationOfTerminal").click(function(){
 				var logicID = $("#logicID").val();
 				var terminalUniqueIdentifier = $("#terminalUniqueIdentifier").val();
-				var manufacturer = $("#manufacturer").val();
+				var typeNumber = $("#typeNumber").val();
 				var versionOfSoftware = $("#versionOfSoftware").val();
 				$.ajax({
-					url: "${ctx.basePath}/informationOfTerminal/info?ascOrDesc=asc&pageIndex=1&pageSize=5&logicID="+logicID+"&terminalUniqueIdentifier="+terminalUniqueIdentifier+"&manufacturer="+manufacturer+"&versionOfSoftware="+versionOfSoftware,
+					url: "${ctx.basePath}/informationOfTerminal/info?ascOrDesc=asc&pageIndex=1&pageSize=5&logicID="+logicID+"&terminalUniqueIdentifier="+terminalUniqueIdentifier+"&typeNumber="+typeNumber+"&versionOfSoftware="+versionOfSoftware,
 					success:function(result){	
 						console.log(result);
+						$("#json").append(JSON.stringify(result));
 					}
 				});
 			});

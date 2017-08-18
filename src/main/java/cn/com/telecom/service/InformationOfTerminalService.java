@@ -15,7 +15,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import cn.com.telecom.domain.InformationOfTerminal;
-import cn.com.telecom.domain.InformationPON;
 import cn.com.telecom.repository.InformationOfTerminalRepository;
 import cn.com.telecom.util.Utils;
 
@@ -40,7 +39,7 @@ public class InformationOfTerminalService {
 	
 	
 	
-	private Specification<InformationOfTerminal> getWhereClause(final String logicID,final String terminalUniqueIdentifier,final String manufacturer,final String versionOfSoftware){
+	private Specification<InformationOfTerminal> getWhereClause(final String logicID,final String terminalUniqueIdentifier,final String typeNumber,final String versionOfSoftware){
 		return new Specification<InformationOfTerminal>() {
 
 			public Predicate toPredicate(Root<InformationOfTerminal> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
@@ -55,8 +54,8 @@ public class InformationOfTerminalService {
 					predicate.add(cb.like(root.get("terminalUniqueIdentifier").as(String.class), "%"+terminalUniqueIdentifier+"%"));
 				}
 				
-				if(manufacturer != null && !"".equals(manufacturer.trim())) {
-					predicate.add(cb.like(root.get("manufacturer").as(String.class), "%"+manufacturer+"%"));
+				if(typeNumber != null && !"".equals(typeNumber.trim())) {
+					predicate.add(cb.like(root.get("typeNumber").as(String.class), "%"+typeNumber+"%"));
 				}
 				
 				if(versionOfSoftware != null && !"".equals(versionOfSoftware.trim())) {
